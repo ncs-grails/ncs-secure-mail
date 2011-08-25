@@ -1,0 +1,26 @@
+ABOUT
+-----
+
+This is a Grails app that allows you to send 
+messages and attachments that never travel 
+unencrypted over the wire. (unlike email).
+
+It uses an HTTPS based messaging server that
+sends out standard email notifications to 
+recipients of new messages waiting within the
+secure messaging system.
+
+REQUIREMENTS
+------------
+
+Database Server (MySQL, or any Hibernate comatable RDBMS)
+Java Application Server (Tomcat 6 is preferred)
+SMTP Mail server (postfix, sendmail, etc...)
+Grails 1.3.7+ (to build)
+SSL Certificates (HTTPS is required)
+
+INSTALATION INSTRUCTIONS
+------------------------
+...coming soon...
+
+

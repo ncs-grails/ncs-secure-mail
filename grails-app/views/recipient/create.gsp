@@ -1,0 +1,1 @@
+<span id="recipient.container.${id}"><g:textField size="40" name="recipient.new.${id}" onblur="saveRecipient(this);" value="${email}" class="toAddress ${cssClass}" /><br/></span>
