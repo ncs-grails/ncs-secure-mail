@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
+        <meta name="layout" content="ncs" />
         <g:set var="entityName" value="${message(code: 'message.label', default: 'Message')}" />
         <title><g:message code="message.compose.label" /> - <g:message code="default.application.title" /></title>
 		<g:javascript src="compose.js" />

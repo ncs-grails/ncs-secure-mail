@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
+        <meta name="layout" content="ncs" />
         <g:set var="entityName" value="${message(code: 'message.label', default: 'Message')}" />
         <title><g:message code="default.application.title" /></title>
 		<g:javascript src="inbox.js" />
@@ -59,8 +59,17 @@
 		                            <td class="grid_6 ${messageInstance.attachments ? 'attach' : ''}">
 		                            	<g:link action="show" id="${messageInstance.id}">${fieldValue(bean: messageInstance, field: "subject")}</g:link>
 		                            </td>
-		                            <td class="grid_1"><g:formatDate date="${messageInstance.dateCreated}" /></td>
-		                            <td class="grid_1"><g:formatDate date="${messageInstance.dateExpires}" /></td>
+									<td class="grid_1 dateCreated">
+										<g:if test="${messageInstance.dateCreated < thisMorning}">
+											<g:formatDate format="MMM d" date="${messageInstance.dateCreated}" />
+										</g:if>
+										<g:else>
+											<g:formatDate format="h:kk a" date="${messageInstance.dateCreated}" />
+										</g:else>
+									</td>
+									<td class="grid_1 dateExpires">
+										<g:formatDate format="MMM d" date="${messageInstance.dateExpires}" />
+									</td>
 		                        </tr>
 		                    </g:each>
 		                    </tbody>
@@ -87,8 +96,17 @@
 		                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 		                            <td class="grid_2"><g:link action="edit" id="${messageInstance.id}">${messageInstance?.recipients.join(', ') ?: 'none yet'}</g:link></td>
 		                            <td class="grid_6"><g:link action="edit" id="${messageInstance.id}">${messageInstance?.subject ?: 'no subject'}</g:link></td>
-		                            <td class="grid_1"><g:link action="edit" id="${messageInstance.id}"><g:formatDate date="${messageInstance.dateCreated}" format="MMM d" /></g:link></td>
-		                            <td class="grid_1"><g:link action="edit" id="${messageInstance.id}"><g:formatDate date="${messageInstance.dateExpires}" format="MMM d" /></g:link></td>
+									<td class="grid_1 dateCreated">
+										<g:if test="${messageInstance.dateCreated < thisMorning}">
+											<g:formatDate format="MMM d" date="${messageInstance.dateCreated}" />
+										</g:if>
+										<g:else>
+											<g:formatDate format="h:kk a" date="${messageInstance.dateCreated}" />
+										</g:else>
+									</td>
+									<td class="grid_1 dateExpires">
+										<g:formatDate format="MMM d" date="${messageInstance.dateExpires}" />
+									</td>
 		                        </tr>
 		                    </g:each>
 		                    </tbody>
@@ -115,8 +133,17 @@
 		                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 		                            <td class="grid_2"><g:link action="show" id="${messageInstance.id}">${messageInstance?.recipients.join(', ')}</g:link></td>
 		                            <td class="grid_6"><g:link action="show" id="${messageInstance.id}">${fieldValue(bean: messageInstance, field: "subject")}</g:link></td>
-		                            <td class="grid_1"><g:formatDate date="${messageInstance.dateCreated}" format="MMM d" /></td>
-		                            <td class="grid_1"><g:formatDate date="${messageInstance.dateExpires}" format="MMM d"/></td>
+									<td class="grid_1 dateCreated">
+										<g:if test="${messageInstance.dateCreated < thisMorning}">
+											<g:formatDate format="MMM d" date="${messageInstance.dateCreated}" />
+										</g:if>
+										<g:else>
+											<g:formatDate format="h:kk a" date="${messageInstance.dateCreated}" />
+										</g:else>
+									</td>
+									<td class="grid_1 dateExpires">
+										<g:formatDate format="MMM d" date="${messageInstance.dateExpires}" />
+									</td>
 		                        </tr>
 		                    </g:each>
 		                    </tbody>
@@ -142,8 +169,17 @@
 		                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 		                            <td class="grid_2"><g:link action="show" id="${messageInstance.id}">${fieldValue(bean: messageInstance, field: "from")}</g:link></td>
 		                            <td class="grid_6"><g:link action="show" id="${messageInstance.id}">${fieldValue(bean: messageInstance, field: "subject")}</g:link></td>
-		                            <td class="grid_1"><g:formatDate date="${messageInstance.dateCreated}" /></td>
-		                            <td class="grid_1"><g:formatDate date="${messageInstance.dateExpires}" /></td>
+									<td class="grid_1 dateCreated">
+										<g:if test="${messageInstance.dateCreated < thisMorning}">
+											<g:formatDate format="MMM d" date="${messageInstance.dateCreated}" />
+										</g:if>
+										<g:else>
+											<g:formatDate format="h:kk a" date="${messageInstance.dateCreated}" />
+										</g:else>
+									</td>
+									<td class="grid_1 dateExpires">
+										<g:formatDate format="MMM d" date="${messageInstance.dateExpires}" />
+									</td>
 		                        </tr>
 		                    </g:each>
 		                    </tbody>
@@ -153,6 +189,10 @@
 					<div class="clear-both" style="height:1em;"></div>
 				</div>
     		</div>
+		</div>
+		<div style="float:right">
+			<label for="fullName">Your full name as displayed to others:</label>
+			<g:remoteField name="fullName" value="${userInstance.fullName}" controller="user" action="update" id="${userInstance.id}" />
 		</div>
     </body>
 </html>

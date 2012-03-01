@@ -1,14 +1,7 @@
-// locations to search for config files that get merged into the main config
-// config files can either be Java properties files or ConfigSlurper scripts
-
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
-
-// if(System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
+grails.config.locations = [ 
+	"file:/etc/grails/logging-config.groovy",
+	"file:/etc/grails/mail-config.groovy",
+	"file:/etc/grails/${appName}-config.groovy" ]
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
@@ -24,8 +17,7 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
                       all: '*/*',
                       json: ['application/json','text/json'],
                       form: 'application/x-www-form-urlencoded',
-                      multipartForm: 'multipart/form-data'
-                    ]
+                      multipartForm: 'multipart/form-data' ]
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
@@ -53,62 +45,6 @@ grails.exceptionresolver.params.exclude = ['password']
 grails.exceptionresolver.params.exclude = ['password2']
 grails.exceptionresolver.params.exclude = ['passwordConfirm']
 
-
-// set per-environment serverURL stem for creating absolute links
-environments {
-    production {
-        grails.serverURL = "https://secure.ncs.umn.edu/secure-mail"
-		fileuploader.files.path = "/var/spool/secure-mail"
-	}
-    development {
-        grails.serverURL = "https://localhost:8443/${appName}"
-		fileuploader.files.path = "/tmp/secure-mail/"
-		
-		grails.naming.entries = [
-			"jdbc/SecureMail": [
-				type: "javax.sql.DataSource", //required
-				auth: "Container", // optional
-				description: "Data source for SecureMail", //optional
-				driverClassName: "com.mysql.jdbc.Driver",
-				url: "jdbc:mysql://localhost/secure_mail?noAccessToProcedureBodies=true",
-				username: "ncs-secure-mail",
-				password: "ied5AiBoo6vaok6OosuwieCing4ahph1",
-				maxActive: "8",
-				maxIdle: "4"
-			],
-		]
-    }
-    test {
-        grails.serverURL = "https://localhost:8443/${appName}"
-		fileuploader.files.path = "/tmp/secure-mail/"
-    }
-
-}
-
-// log4j configuration
-log4j = {
-    // Example of changing the log pattern for the default console
-    // appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
-
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
-           'org.codehaus.groovy.grails.web.pages', //  GSP
-           'org.codehaus.groovy.grails.web.sitemesh', //  layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping', // URL mapping
-           'org.codehaus.groovy.grails.commons', // core / classloading
-           'org.codehaus.groovy.grails.plugins', // plugins
-           'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
-
-    warn   'org.mortbay.log'
-}
-
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'edu.umn.ncs.mail.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'edu.umn.ncs.mail.UserRole'
@@ -116,9 +52,7 @@ grails.plugins.springsecurity.authority.className = 'edu.umn.ncs.mail.Role'
 grails.plugins.springsecurity.auth.forceHttps = true
 grails.plugins.springsecurity.secureChannel.definition = [ '/**':'REQUIRES_SECURE_CHANNEL' ]
 // "Remember Me" is disabled on the login form
-grails.plugins.springsecurity.rememberMe.key = 'aehahfughei5zeeboo8ahMaiChah9pai'
 grails.plugins.springsecurity.rememberMe.useSecureCookie = true
-grails.plugins.springsecurity.logout.afterLogoutUrl = "http://www.ncs.umn.edu/"
 // this saves password hashes to a shorter length
 grails.plugins.springsecurity.password.encodeHashAsBase64 = true
 
@@ -139,20 +73,6 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 	'/download/**':['ROLE_NOBODY'],
 	'/fileUploader/**':['ROLE_USER']
 	]
-
-// for sending email
-grails.mail.host = "mail.cccs.umn.edu"
-// disable for debugging
-grails.mail.disabled = false
-
-// Used by the file uploader
-fileuploader {
-	files {
-		maxSize = 1000 * 1024 * 25 //25 mbytes
-		allowedExtensions = ["*"]
-		path = "/var/spool/secure-mail"
-	}
-}
 
 // use jquery
 grails.views.javascript.library="jquery"

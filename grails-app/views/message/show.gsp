@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
+        <meta name="layout" content="ncs" />
         <g:set var="entityName" value="${message(code: 'message.label', default: 'Message')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
@@ -87,7 +87,7 @@
                             <td valign="top" class="name"><g:message code="message.body.label" default="Body" /></td>
                             
                             <td valign="top" class="value">
-                            	<g:if test="${messageInstance.body}">
+                            	<g:if test="${! messageInstance.body}">
                             		<p style="font-style: italic;">None</p>
                             	</g:if>
                             	<g:else>
@@ -126,10 +126,8 @@
                 <g:form>
                     <g:hiddenField name="id" value="${messageInstance?.id}" />
                     <span class="button"><g:actionSubmit class="reply" action="reply" value="${message(code: 'default.message.reply.label', default: 'Reply')}" /></span>
-                    <!-- TODO: -->
-                    <!--
+                    <span class="button"><g:actionSubmit class="reply" action="replyAll" value="${message(code: 'default.message.replyToAll.label', default: 'Reply to all')}" /></span>
                     <span class="button"><g:actionSubmit class="forward" action="forward" value="${message(code: 'default.message.forward.label', default: 'Forward')}" /></span>
-                    -->
                     <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
                 </g:form>
             </div>

@@ -1,5 +1,5 @@
 <head>
-<meta name='layout' content='main' />
+<meta name='layout' content='ncs' />
 <title>New Account - <g:message code="default.application.title" /></title>
 <style type='text/css' media='screen'>
 

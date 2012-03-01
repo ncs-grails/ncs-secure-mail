@@ -1,5 +1,5 @@
 <head>
-<meta name='layout' content='main' />
+<meta name='layout' content='ncs' />
 <title>Login - Secure Messaging System</title>
 <style type='text/css' media='screen'>
 
