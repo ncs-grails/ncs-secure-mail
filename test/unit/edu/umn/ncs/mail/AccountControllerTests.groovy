@@ -4,8 +4,6 @@ import grails.test.*
 
 class AccountControllerTests extends ControllerUnitTestCase {
 	
-	def springSecurityService
-	
     protected void setUp() {
         super.setUp()
     }
@@ -16,20 +14,18 @@ class AccountControllerTests extends ControllerUnitTestCase {
 
     void testChangePassword() {
 		def ac = new AccountController()
-		ac.springSecurityService = springSecurityService
-		ac.changePassword()
+		// this is a standard GSP with no model to render
+		assert ac.changePassword() == null
     }
 	
     void testUpdatePassword() {
 		def ac = new AccountController()
-		ac.springSecurityService = springSecurityService
-		ac.updatePassword()
-    }
+		// check our results
+		assert ac.updatePassword    }
 	
 	void testNewUser() {
 		def ac = new AccountController()
-		ac.springSecurityService = springSecurityService
-		ac.newUser()
+		assert ac.newUser
 	}
 	
 }

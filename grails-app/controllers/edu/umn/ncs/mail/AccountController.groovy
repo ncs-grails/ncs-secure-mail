@@ -11,14 +11,10 @@ class AccountController {
 	def userAccountService
 
 	// change password form
-	@Secured(['ROLE_USER'])
 	def changePassword = {
-		def userInstance = springSecurityService.currentUser
-		[userInstance: userInstance]
 	}
 	
 	// change password action
-	@Secured(['ROLE_USER'])
 	def updatePassword = {
 		def userInstance = springSecurityService.currentUser
 		def passwordOld = params?.passwordOld
