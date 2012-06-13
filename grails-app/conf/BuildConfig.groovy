@@ -39,8 +39,8 @@ grails.project.dependency.resolution = {
 		compile ":hibernate:${grailsVersion}"
 
 		compile ":audit-logging:0.5.4"
-		compile ":code-coverage:1.2.5"
-		compile ":codenarc:0.16.1"
+		test ":code-coverage:1.2.5"
+		test ":codenarc:0.16.1"
 		compile ":famfamfam:1.0.1"
 		compile ":file-uploader:1.2"
 		compile ":jquery:1.6.1.1"
@@ -52,3 +52,14 @@ grails.project.dependency.resolution = {
 		compile ":spring-security-ui:0.1.2"
 	}
 }
+codenarc.reports = {
+	JenkinsXmlReport('xml') {
+		outputFile = 'target/test-reports/CodeNarcReport.xml'
+		title = 'CodeNarc Report for NCS Secure Mail'
+	}
+	JenkinsHtmlReport('html') {
+		outputFile = 'CodeNarcReport.html'
+		title = 'CodeNarc Report for NCS Secure Mail'
+	}
+}
+codenarc.propertiesFile = 'grails-app/conf/codenarc.properties'
