@@ -23,8 +23,8 @@ class Message {
 	Date dateCreated = new Date()
 	/** All messages expire in this system, so this is the date
 	that the message expires.  The default expire date is
-	90 days after the message was created. */
-	Date dateExpires = ( new Date() ) + 90
+	30 days after the message was created. */
+	Date dateExpires = ( new Date() ) + 30
 	/** This marks whether or not the 'from' User of the message has
 	marked this message as deleted. */
 	Boolean deleted = false

@@ -298,10 +298,10 @@ class MessageController {
 	
 	/** This is the action for composing a message. */
     def edit = {
-		//year in 90 days
+		//year in 30 days
 		def maxExpireDate = new GregorianCalendar()
 		def currentYear = maxExpireDate.get(Calendar.YEAR)
-		maxExpireDate.add(Calendar.DATE, 90)
+		maxExpireDate.add(Calendar.DATE, 30)
 		def maxYear = maxExpireDate.get(Calendar.YEAR)
 		
 		def yearRange = (currentYear..maxYear)
